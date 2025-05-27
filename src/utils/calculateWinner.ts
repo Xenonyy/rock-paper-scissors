@@ -11,7 +11,7 @@ export const calculateWinner = (player: RPSChoice, computer: RPSChoice): GameSta
     (player === 'paper' && computer === 'rock') ||
     (player === 'scissors' && computer === 'paper')
   ) {
-    return 'win';
+    return 'you win';
   }
-  return 'lose';
+  return 'you lose';
 };
