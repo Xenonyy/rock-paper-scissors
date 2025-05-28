@@ -4,11 +4,13 @@ import type { GameStage, GameState } from '../../types/RPSState';
 import { Box } from '../common/Box';
 import { RPSButton } from './RPSButton';
 import { getRandomComputerMove } from '../../utils/getRandomComputerMove';
-import { calculateWinner } from '../../utils/calculateWinner';
+import { calculateOutcome } from '../../utils/calculateOutcome';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
 import { Text } from '../common/Text';
 import { useScore } from '../../contexts/ScoreContext';
+import { calculateWinner } from '../../utils/calculateWinner';
+import { useWinner } from '../../contexts/WinnerContext';
 
 const initialPositions: Record<RPSChoice, string> = {
   paper: 'top-0 left-0',
@@ -25,6 +27,7 @@ export const RPSButtonsContainer = () => {
   const [stage, setStage] = useState<GameStage>('idle');
 
   const { score, setScore } = useScore();
+  const { winner, setWinner } = useWinner();
 
   const handleRPSButtonClick = async (type: RPSChoice) => {
     if (stage !== 'idle') return;
@@ -45,20 +48,22 @@ export const RPSButtonsContainer = () => {
     setPlayerChoice(null);
     setComputerChoice(null);
     setStage('idle');
+    setWinner('draw');
   };
 
   const handleCalculation = (): GameState | undefined => {
     if (playerChoice !== null && computerChoice !== null) {
-      return calculateWinner(playerChoice, computerChoice);
+      return calculateOutcome(playerChoice, computerChoice);
     }
   };
 
   useEffect(() => {
     if (playerChoice !== null && computerChoice !== null) {
-      const result = calculateWinner(playerChoice, computerChoice);
+      const result = calculateOutcome(playerChoice, computerChoice);
       if (result === 'you win') {
         setScore((prevScore: number) => prevScore + 1);
       }
+      setWinner(calculateWinner(playerChoice, computerChoice));
     }
     console.log('Game state updated:', {
       playerChoice,
@@ -66,7 +71,7 @@ export const RPSButtonsContainer = () => {
       stage,
       score,
     });
-  }, [playerChoice, computerChoice, calculateWinner]);
+  }, [playerChoice, computerChoice, calculateOutcome, calculateWinner]);
 
   const isVisible = stage === 'result';
 
@@ -108,7 +113,12 @@ export const RPSButtonsContainer = () => {
                 }
                 transition={{ duration: 0.2, ease: 'linear' }}
               >
-                <RPSButton selected={isSelected} type={type} onClick={handleRPSButtonClick} />
+                <RPSButton
+                  winner={winner === playerChoice}
+                  selected={isSelected}
+                  type={type}
+                  onClick={handleRPSButtonClick}
+                />
               </motion.div>
             )
           );
@@ -122,7 +132,7 @@ export const RPSButtonsContainer = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.15, ease: 'linear' }}
           >
-            <RPSButton type={computerChoice} onClick={() => {}} selected />
+            <RPSButton winner={winner === computerChoice} type={computerChoice} onClick={() => {}} selected />
           </motion.div>
         )}
 
