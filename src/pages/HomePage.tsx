@@ -6,6 +6,7 @@ import { DefaultLayout } from '../components/layouts/DefaultLayout';
 import clsx from 'clsx';
 import { RulesModal } from '../components/RulesModal/RulesModal';
 import { RPSButtonsContainer } from '../components/RPSButton/RPSButtonsContainer';
+import { useScore } from '../contexts/ScoreContext';
 
 export const HomePage = () => {
   const [isModalActive, setIsModalActive] = useState(false);
@@ -13,7 +14,7 @@ export const HomePage = () => {
   const handleModalOpen = () => setIsModalActive(true);
   const handleModalClose = () => setIsModalActive(false);
 
-  const score = 12; // This should come from a state or props
+  const { score } = useScore();
 
   return (
     <DefaultLayout>

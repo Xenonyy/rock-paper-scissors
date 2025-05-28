@@ -1,5 +1,10 @@
+import { ScoreProvider } from './contexts/ScoreContext';
 import { HomePage } from './pages/HomePage';
 
 export const App = () => {
-  return <HomePage />;
+  return (
+    <ScoreProvider>
+      <HomePage />
+    </ScoreProvider>
+  );
 };

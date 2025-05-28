@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { RPSChoice } from '../../types/RPSChoice';
-import type { GameStage } from '../../types/RPSState';
+import type { GameStage, GameState } from '../../types/RPSState';
 import { Box } from '../common/Box';
 import { RPSButton } from './RPSButton';
 import { getRandomComputerMove } from '../../utils/getRandomComputerMove';
@@ -8,6 +8,7 @@ import { calculateWinner } from '../../utils/calculateWinner';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
 import { Text } from '../common/Text';
+import { useScore } from '../../contexts/ScoreContext';
 
 const initialPositions: Record<RPSChoice, string> = {
   paper: 'top-0 left-0',
@@ -22,6 +23,8 @@ export const RPSButtonsContainer = () => {
   const [playerChoice, setPlayerChoice] = useState<RPSChoice | null>(null);
   const [computerChoice, setComputerChoice] = useState<RPSChoice | null>(null);
   const [stage, setStage] = useState<GameStage>('idle');
+
+  const { score, setScore } = useScore();
 
   const handleRPSButtonClick = async (type: RPSChoice) => {
     if (stage !== 'idle') return;
@@ -43,6 +46,27 @@ export const RPSButtonsContainer = () => {
     setComputerChoice(null);
     setStage('idle');
   };
+
+  const handleCalculation = (): GameState | undefined => {
+    if (playerChoice !== null && computerChoice !== null) {
+      return calculateWinner(playerChoice, computerChoice);
+    }
+  };
+
+  useEffect(() => {
+    if (playerChoice !== null && computerChoice !== null) {
+      const result = calculateWinner(playerChoice, computerChoice);
+      if (result === 'you win') {
+        setScore((prevScore: number) => prevScore + 1);
+      }
+    }
+    console.log('Game state updated:', {
+      playerChoice,
+      computerChoice,
+      stage,
+      score,
+    });
+  }, [playerChoice, computerChoice, calculateWinner]);
 
   const isVisible = stage === 'result';
 
@@ -109,10 +133,7 @@ export const RPSButtonsContainer = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.1 }}
           >
-            <Text
-              text={calculateWinner(playerChoice, computerChoice)}
-              className="uppercase text-4xl tracking-wider font-bold"
-            />
+            <Text text={String(handleCalculation())} className="uppercase text-4xl tracking-wider font-bold" />
             <button
               onClick={handleReset}
               className="bg-white px-4 py-2 rounded text-sm cursor-pointer hover:bg-gray-200 transition-all duration-300"
@@ -120,8 +141,8 @@ export const RPSButtonsContainer = () => {
               <Text
                 text={'play again'}
                 className={clsx('uppercase px-4 tracking-widest font-semibold', {
-                  ['text-red-500']: calculateWinner(playerChoice, computerChoice) === 'you lose',
-                  ['text-black']: calculateWinner(playerChoice, computerChoice) !== 'you lose',
+                  ['text-red-500']: handleCalculation() === 'you lose',
+                  ['text-black']: handleCalculation() !== 'you lose',
                 })}
               />
             </button>
