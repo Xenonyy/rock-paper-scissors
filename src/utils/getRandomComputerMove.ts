@@ -4,6 +4,5 @@ export const getRandomComputerMove = (): RPSChoice => {
   const choices: RPSChoice[] = ['rock', 'paper', 'scissors'];
   const array = new Uint32Array(1);
   crypto.getRandomValues(array);
-  console.log(choices[array[0] % 3]);
   return choices[array[0] % 3];
 };
