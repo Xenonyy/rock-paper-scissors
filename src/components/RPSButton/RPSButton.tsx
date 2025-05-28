@@ -27,9 +27,10 @@ export const RPSButton: FC<RPSButtonProps> = ({ type, onClick, selected, winner 
     <div className="relative flex items-center justify-center">
       {winner && (
         <>
-          <Ring size="clamp(14rem,40vw,21rem)" />
-          <Ring size="clamp(18rem,50vw,27rem)" delay={200} />
-          <Ring size="clamp(22rem,60vw,33rem)" delay={500} />
+          {console.log(winner, 'RPSbuttoncontainer')}
+          <Ring className="w-[clamp(14rem,40vw,21rem)] h-[clamp(14rem,40vw,21rem)]" />
+          <Ring className="w-[clamp(18rem,50vw,27rem)] h-[clamp(18rem,50vw,27rem)]" />
+          <Ring className="w-[clamp(22rem,60vw,33rem)] h-[clamp(22rem,60vw,33rem)]" />
         </>
       )}
 
