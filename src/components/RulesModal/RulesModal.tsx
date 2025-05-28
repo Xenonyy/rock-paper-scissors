@@ -4,6 +4,7 @@ import type { FC } from 'react';
 import { Box } from '../common/Box';
 import { CloseButton } from '../common/CloseButton';
 import { Text } from '../common/Text';
+import { useScrollLock } from '../../hooks/useScrollLock';
 
 interface RulesModalProps {
   className?: string;
@@ -13,10 +14,13 @@ interface RulesModalProps {
 }
 
 export const RulesModal: FC<RulesModalProps> = ({ className, src, active = false, close }) => {
+  useScrollLock(active);
+  if (!active) return null;
+
   return (
-    <Modal active={active}>
+    <Modal active={active} onClose={close}>
       <Box className={clsx('mb-4 rounded-lg shadow-lg bg-white relative items-start p-10 flex-col', className)}>
-        <Box className={clsx('flex-row justify-between w-full mb-10', className)}>
+        <Box className="flex-row justify-between w-full mb-10">
           <Text text="rules" className="uppercase font-semibold text-3xl text-gray-700" />
           <CloseButton onClick={close} />
         </Box>
