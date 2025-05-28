@@ -1,7 +1,7 @@
 import clsx from 'clsx';
-import type { RPSChoice } from '../../types/RPSChoice';
+import type { RPSChoice } from '../../../types/RPSChoice';
 import type { FC } from 'react';
-import { Ring } from './ConcentricRings';
+import { Ring } from '../RPSConcentricRings';
 
 interface RPSButtonProps {
   type: RPSChoice;
@@ -27,7 +27,7 @@ export const RPSButton: FC<RPSButtonProps> = ({ type, onClick, selected, winner 
     <div className="relative flex items-center justify-center">
       {winner && (
         <>
-          {console.log(winner, 'RPSbuttoncontainer')}
+          {process.env.NODE_ENV !== 'production' && console.log(winner, 'RPSbuttoncontainer')}
           <Ring className="w-[clamp(14rem,40vw,21rem)] h-[clamp(14rem,40vw,21rem)]" />
           <Ring className="w-[clamp(18rem,50vw,27rem)] h-[clamp(18rem,50vw,27rem)]" />
           <Ring className="w-[clamp(22rem,60vw,33rem)] h-[clamp(22rem,60vw,33rem)]" />

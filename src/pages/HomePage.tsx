@@ -5,7 +5,7 @@ import { Text } from '../components/common/Text';
 import { DefaultLayout } from '../components/layouts/DefaultLayout';
 import clsx from 'clsx';
 import { RulesModal } from '../components/RulesModal/RulesModal';
-import { RPSButtonsContainer } from '../components/RPSButton/RPSButtonsContainer';
+import { RPSButtonsWrapper } from '../components/RPSParts/RPSButton/RPSButtonsWrapper';
 import { useScore } from '../contexts/ScoreContext';
 
 export const HomePage = () => {
@@ -34,7 +34,7 @@ export const HomePage = () => {
             <Text text={score} className="font-bold text-5xl" />
           </Box>
         </Box>
-        <RPSButtonsContainer />
+        <RPSButtonsWrapper />
         <Box className="justify-end w-full">
           <button
             className="cursor-pointer uppercase font-semibold tracking-widest border-solid border-3 hover:border-gray-300 transition-all duration-300 border-gray-500 rounded-2xl py-2 px-8"
