@@ -1,15 +1,15 @@
 import type { RPSChoice } from '../types/RPSChoice';
-import type { GameState } from '../types/RPSState';
 
-export const calculateWinner = (player: RPSChoice, computer: RPSChoice): GameState => {
+export type CalculateWinnerType = RPSChoice | 'draw';
+
+export const calculateWinner = (player: RPSChoice, computer: RPSChoice): CalculateWinnerType => {
   if (player === computer) return 'draw';
 
-  if (
-    (player === 'rock' && computer === 'scissors') ||
-    (player === 'paper' && computer === 'rock') ||
-    (player === 'scissors' && computer === 'paper')
-  ) {
-    return 'you win';
-  }
-  return 'you lose';
+  const winsAgainst: Record<RPSChoice, RPSChoice> = {
+    rock: 'scissors',
+    paper: 'rock',
+    scissors: 'paper',
+  };
+
+  return winsAgainst[player] === computer ? player : computer;
 };
