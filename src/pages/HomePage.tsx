@@ -20,7 +20,7 @@ export const HomePage = () => {
     <DefaultLayout>
       <Container
         className={clsx('[background-image:radial-gradient(circle_at_top,_#354063,_#2c3450,_#15183b)] p-8', {
-          'opacity-20 pointer-events-none': isModalActive,
+          'opacity-10 pointer-events-none': isModalActive,
         })}
       >
         <Box className="uppercase font-semibold text-3xl w-[40%] border-solid border-3 border-gray-500 rounded-2xl flex-row justify-between px-6 py-4">

@@ -9,7 +9,7 @@ interface DefaultLayoutTypes {
 export const DefaultLayout: FC<DefaultLayoutTypes> = ({ children }) => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <main className="min-h-screen min-w-full flex items-center flex-col m-0">{children}</main>
       <Footer />
     </>
