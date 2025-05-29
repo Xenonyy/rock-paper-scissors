@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 import { Modal } from '../common/Modal';
-import type { FC } from 'react';
+import { memo, type FC } from 'react';
 import { Box } from '../common/Box';
 import { CloseButton } from '../common/CloseButton';
 import { Text } from '../common/Text';
@@ -13,7 +13,7 @@ interface RulesModalProps {
   close?: () => void;
 }
 
-export const RulesModal: FC<RulesModalProps> = ({ className, src, active = false, close }) => {
+const RulesModalComponent: FC<RulesModalProps> = ({ className, src, active = false, close }) => {
   useScrollLock(active);
   if (!active) return null;
 
@@ -29,3 +29,5 @@ export const RulesModal: FC<RulesModalProps> = ({ className, src, active = false
     </Modal>
   );
 };
+
+export const RulesModal = memo(RulesModalComponent);

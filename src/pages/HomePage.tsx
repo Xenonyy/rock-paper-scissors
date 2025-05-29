@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Box } from '../components/common/Box';
 import { Container } from '../components/common/Container';
 import { Text } from '../components/common/Text';
@@ -11,8 +11,8 @@ import { useScore } from '../contexts/ScoreContext';
 export const HomePage = () => {
   const [isModalActive, setIsModalActive] = useState(false);
 
-  const handleModalOpen = () => setIsModalActive(true);
-  const handleModalClose = () => setIsModalActive(false);
+  const handleModalOpen = useCallback(() => setIsModalActive(true), []);
+  const handleModalClose = useCallback(() => setIsModalActive(false), []);
 
   const { score } = useScore();
 

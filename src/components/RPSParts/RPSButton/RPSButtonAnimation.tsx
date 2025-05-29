@@ -4,6 +4,7 @@ import type { RPSChoice } from '../../../types/RPSChoice';
 import { RPSButton } from './RPSButton';
 import { motion } from 'framer-motion';
 import type { CalculateWinnerType } from '../../../utils/calculateWinner';
+import { memo } from 'react';
 
 interface RPSButtonAnimationProps {
   stage: GameStage;
@@ -13,7 +14,7 @@ interface RPSButtonAnimationProps {
   handleRPSButtonClick: (type: RPSChoice) => Promise<void>;
 }
 
-export const RPSButtonAnimation = ({
+const RPSButtonAnimationComponent = ({
   stage,
   playerChoice,
   computerChoice,
@@ -90,3 +91,6 @@ export const RPSButtonAnimation = ({
     </>
   );
 };
+
+export const RPSButtonAnimation = memo(RPSButtonAnimationComponent);
+RPSButtonAnimation.displayName = 'RPSButtonAnimation';

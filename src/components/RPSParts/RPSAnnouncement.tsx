@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { Text } from '../common/Text';
 import type { GameStage } from '../../types/RPSState';
 import type { RPSChoice } from '../../types/RPSChoice';
+import { memo } from 'react';
 
 interface RPSAnnoucementProps {
   stage: GameStage;
@@ -10,7 +11,7 @@ interface RPSAnnoucementProps {
   computerChoice: RPSChoice | null;
 }
 
-export const RPSAnnouncement = ({ stage, playerChoice, computerChoice }: RPSAnnoucementProps) => {
+const RPSAnnouncementComponent = ({ stage, playerChoice, computerChoice }: RPSAnnoucementProps) => {
   const isVisible = stage === 'result';
 
   return (
@@ -24,3 +25,6 @@ export const RPSAnnouncement = ({ stage, playerChoice, computerChoice }: RPSAnno
     </div>
   );
 };
+
+export const RPSAnnouncement = memo(RPSAnnouncementComponent);
+RPSAnnouncement.displayName = 'RPSAnnouncement';
