@@ -1,5 +1,6 @@
-import { createContext, useContext, useMemo, useState } from 'react';
+import { createContext, useContext, useMemo } from 'react';
 import type { Dispatch, ReactNode, SetStateAction } from 'react';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 type ScoreContextProps = {
   score: number;
@@ -9,7 +10,7 @@ type ScoreContextProps = {
 const ScoreContext = createContext<ScoreContextProps | null>(null);
 
 export const ScoreProvider = ({ children }: { children: ReactNode }) => {
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useLocalStorage<number>('score', 0);
   const value = useMemo(() => ({ score, setScore }), [score, setScore]);
   return <ScoreContext value={value}>{children}</ScoreContext>;
 };

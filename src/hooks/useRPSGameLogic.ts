@@ -6,11 +6,13 @@ import { useScore } from '../contexts/ScoreContext';
 import { useWinner } from '../contexts/WinnerContext';
 import type { GameStage } from '../types/RPSState';
 import type { RPSChoice } from '../types/RPSChoice';
+import { useLocalStorage } from './useLocalStorage';
 
 export const useRPSGameLogic = () => {
   const [playerChoice, setPlayerChoice] = useState<RPSChoice | null>(null);
   const [computerChoice, setComputerChoice] = useState<RPSChoice | null>(null);
   const [stage, setStage] = useState<GameStage>('idle');
+  const [, setLocalStorageScore] = useLocalStorage<number>('score', 0);
 
   const { setScore } = useScore();
   const { winner, setWinner } = useWinner();
@@ -44,6 +46,7 @@ export const useRPSGameLogic = () => {
       const result = calculateOutcome(playerChoice, computerChoice);
       if (result === 'you win') {
         setScore((prev) => prev + 1);
+        setLocalStorageScore((prev) => prev + 1);
       }
       setWinner(calculateWinner(playerChoice, computerChoice));
     }
