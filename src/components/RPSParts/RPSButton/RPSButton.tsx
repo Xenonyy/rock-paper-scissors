@@ -42,7 +42,7 @@ export const RPSButton: FC<RPSButtonProps> = ({ type, onClick, selected, winner 
         aria-pressed={selected}
         onClick={() => onClick(type)}
         className={clsx(
-          'relative z-10 w-38 h-38 rounded-full border-16 flex items-center justify-center transition-transform duration-150 ease-in-out',
+          'relative z-10 w-38 h-38 rounded-full border-16 flex items-center justify-center transition-transform duration-150 ease-in-out scale-90',
           styleMap[type],
           'focus:outline-none focus-visible:ring-1 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-darkBlue',
           {

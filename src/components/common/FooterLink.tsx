@@ -12,8 +12,8 @@ export const FooterLink = ({ href, imgSrc, alt, label }: FooterLinkProps) => {
   return (
     <a
       className={clsx(
-        'non_selectable flex flex-col items-center transition-all duration-200',
-        'hover:scale-105 hover:drop-shadow-xl hover:text-white '
+        'non_selectable flex flex-col items-center transition-all duration-200 scale-75',
+        'hover:scale-[80%] hover:drop-shadow-xl hover:text-white '
       )}
       href={href}
       target="_blank"

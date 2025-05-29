@@ -3,7 +3,7 @@ import { FooterLink } from './FooterLink';
 
 export const Footer = () => {
   return (
-    <footer className="h-30 bg-violet-400 text-black/80 justify-around items-center flex flex-row">
+    <footer className="h-25 bg-violet-400 text-black/80 justify-around items-center flex flex-row">
       <FooterLink href="https://github.com/Xenonyy" imgSrc="./github.png" alt="GitHub" label="Xenonyy" />
       <FooterLink
         href="https://www.linkedin.com/in/armand-gonda/"
@@ -11,8 +11,8 @@ export const Footer = () => {
         alt="LinkedIn"
         label="LinkedIn"
       />
-      <span className="font-medium drop-shadow-md">&copy;{ProjectDetails.year} Gonda Armand</span>
-      <span className="font-medium drop-shadow-md">{`Version: ${ProjectDetails.version}`}</span>
+      <span className="font-medium hover:text-white drop-shadow-md">&copy;{ProjectDetails.year} Gonda Armand</span>
+      <span className="font-medium hover:text-white drop-shadow-md">{`Version: ${ProjectDetails.version}`}</span>
     </footer>
   );
 };
