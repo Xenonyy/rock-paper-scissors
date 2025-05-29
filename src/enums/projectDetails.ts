@@ -1,6 +1,7 @@
 export const ProjectDetails = {
   name: 'Rock Paper Scissors',
-  description: 'A rock paper scissors game built with React, TypeScript and Tailwind via Vite from Frontend Mentor.',
-  version: '0.0.1',
+  description:
+    'A rock paper scissors game with a classic and an advanced mode built with React, TypeScript and Tailwind via Vite from Frontend Mentor.',
+  version: '1.0.0',
   year: '2025',
 };
