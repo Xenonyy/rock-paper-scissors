@@ -1,17 +1,18 @@
-import type { RPSChoice } from '../../types/RPSChoice';
+import type { ExtendedChoices } from '../../types/gameChoices';
 import { calculateOutcome } from '../../utils/calculateOutcome';
 import { motion } from 'framer-motion';
 import { Text } from '../common/Text';
 import clsx from 'clsx';
 
 interface RPSResultProps {
-  playerChoice: RPSChoice;
-  computerChoice: RPSChoice;
+  playerChoice: ExtendedChoices;
+  computerChoice: ExtendedChoices;
   onReset: () => void;
+  rules: Record<string, string[]>;
 }
 
-export const RPSResult = ({ playerChoice, computerChoice, onReset }: RPSResultProps) => {
-  const result = calculateOutcome(playerChoice, computerChoice);
+export const RPSResult = ({ playerChoice, computerChoice, onReset, rules }: RPSResultProps) => {
+  const result = calculateOutcome({ playerChoice, computerChoice, rules });
 
   return (
     <motion.div

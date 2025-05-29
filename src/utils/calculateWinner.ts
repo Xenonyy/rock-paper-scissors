@@ -1,15 +1,10 @@
-import type { RPSChoice } from '../types/RPSChoice';
+import type { CalculateInterface } from '../types/calculateUtil';
+import type { ExtendedChoices } from '../types/gameChoices';
 
-export type CalculateWinnerType = RPSChoice | 'draw';
+export type CalculateWinnerType = ExtendedChoices | 'draw';
 
-export const calculateWinner = (player: RPSChoice, computer: RPSChoice): CalculateWinnerType => {
-  if (player === computer) return 'draw';
+export const calculateWinner = ({ playerChoice, computerChoice, rules }: CalculateInterface): CalculateWinnerType => {
+  if (playerChoice === computerChoice) return 'draw';
 
-  const winsAgainst: Record<RPSChoice, RPSChoice> = {
-    rock: 'scissors',
-    paper: 'rock',
-    scissors: 'paper',
-  };
-
-  return winsAgainst[player] === computer ? player : computer;
+  return rules[playerChoice].includes(computerChoice) ? playerChoice : computerChoice;
 };

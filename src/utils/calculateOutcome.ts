@@ -1,15 +1,7 @@
-import type { RPSChoice } from '../types/RPSChoice';
+import type { CalculateInterface } from '../types/calculateUtil';
 import type { GameState } from '../types/RPSState';
 
-export const calculateOutcome = (player: RPSChoice, computer: RPSChoice): GameState => {
-  if (player === computer) return 'draw';
-
-  if (
-    (player === 'rock' && computer === 'scissors') ||
-    (player === 'paper' && computer === 'rock') ||
-    (player === 'scissors' && computer === 'paper')
-  ) {
-    return 'you win';
-  }
-  return 'you lose';
+export const calculateOutcome = ({ playerChoice, computerChoice, rules }: CalculateInterface): GameState => {
+  if (playerChoice === computerChoice) return 'draw';
+  return rules[playerChoice].includes(computerChoice) ? 'you win' : 'you lose';
 };

@@ -1,38 +1,50 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { calculateOutcome } from '../utils/calculateOutcome';
 import { getRandomComputerMove } from '../utils/getRandomComputerMove';
 import { calculateWinner } from '../utils/calculateWinner';
 import { useScore } from '../contexts/ScoreContext';
 import { useWinner } from '../contexts/WinnerContext';
+import { useGameMode } from '../contexts/GameModeContext';
 import type { GameStage } from '../types/RPSState';
-import type { RPSChoice } from '../types/RPSChoice';
 import { useLocalStorage } from './useLocalStorage';
+import { ModePickOptions, WinningRules } from '../types/gameModes';
+import type { ExtendedChoices } from '../types/gameChoices';
 
 export const useRPSGameLogic = () => {
-  const [playerChoice, setPlayerChoice] = useState<RPSChoice | null>(null);
-  const [computerChoice, setComputerChoice] = useState<RPSChoice | null>(null);
+  const [playerChoice, setPlayerChoice] = useState<ExtendedChoices | null>(null);
+  const [computerChoice, setComputerChoice] = useState<ExtendedChoices | null>(null);
   const [stage, setStage] = useState<GameStage>('idle');
   const [, setLocalStorageScore] = useLocalStorage<number>('score', 0);
 
   const { setScore } = useScore();
   const { winner, setWinner } = useWinner();
+  const { mode } = useGameMode();
+  const options = useMemo(() => ModePickOptions[mode], [mode]);
+  const rules = useMemo(() => WinningRules[mode], [mode]);
 
   const handleGameStart = useCallback(
-    async (choice: RPSChoice) => {
+    async (choice: ExtendedChoices) => {
       if (stage !== 'idle') return;
 
       setPlayerChoice(choice);
       setStage('animating');
       await new Promise((res) => setTimeout(res, 500));
 
-      const computer = getRandomComputerMove();
+      const computer = getRandomComputerMove(options);
       setComputerChoice(computer);
       setStage('reveal');
       await new Promise((res) => setTimeout(res, 200));
-
       setStage('result');
+
+      const result = calculateOutcome({ playerChoice: choice, computerChoice: computer, rules });
+      setWinner(calculateWinner({ playerChoice: choice, computerChoice: computer, rules }));
+
+      if (result === 'you win') {
+        setScore((prev) => prev + 1);
+        setLocalStorageScore((prev) => prev + 1);
+      }
     },
-    [stage]
+    [stage, options]
   );
   const handleReset = useCallback(() => {
     setPlayerChoice(null);
@@ -40,17 +52,6 @@ export const useRPSGameLogic = () => {
     setStage('idle');
     setWinner('draw');
   }, []);
-
-  useEffect(() => {
-    if (playerChoice && computerChoice) {
-      const result = calculateOutcome(playerChoice, computerChoice);
-      if (result === 'you win') {
-        setScore((prev) => prev + 1);
-        setLocalStorageScore((prev) => prev + 1);
-      }
-      setWinner(calculateWinner(playerChoice, computerChoice));
-    }
-  }, [playerChoice, computerChoice]);
 
   return useMemo(
     () => ({
@@ -60,7 +61,8 @@ export const useRPSGameLogic = () => {
       winner,
       handleGameStart,
       handleReset,
+      rules,
     }),
-    [stage, playerChoice, computerChoice, winner, handleGameStart, handleReset]
+    [stage, playerChoice, computerChoice, winner, handleGameStart, handleReset, rules]
   );
 };

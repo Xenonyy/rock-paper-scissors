@@ -2,13 +2,13 @@ import { motion } from 'framer-motion';
 import clsx from 'clsx';
 import { Text } from '../common/Text';
 import type { GameStage } from '../../types/RPSState';
-import type { RPSChoice } from '../../types/RPSChoice';
+import type { ExtendedChoices } from '../../types/gameChoices';
 import { memo } from 'react';
 
 interface RPSAnnoucementProps {
   stage: GameStage;
-  playerChoice: RPSChoice | null;
-  computerChoice: RPSChoice | null;
+  playerChoice: ExtendedChoices | null;
+  computerChoice: ExtendedChoices | null;
 }
 
 const RPSAnnouncementComponent = ({ stage, playerChoice, computerChoice }: RPSAnnoucementProps) => {

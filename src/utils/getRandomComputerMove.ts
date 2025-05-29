@@ -1,8 +1,8 @@
-import type { RPSChoice } from '../types/RPSChoice';
+import type { ExtendedChoices } from '../types/gameChoices';
 
-export const getRandomComputerMove = (): RPSChoice => {
-  const choices: RPSChoice[] = ['rock', 'paper', 'scissors'];
+export const getRandomComputerMove = (modeOptions: ExtendedChoices[]): ExtendedChoices => {
   const array = new Uint32Array(1);
   crypto.getRandomValues(array);
-  return choices[array[0] % 3];
+  const index = array[0] % modeOptions.length;
+  return modeOptions[index];
 };

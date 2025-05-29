@@ -1,25 +1,29 @@
 import clsx from 'clsx';
-import type { RPSChoice } from '../../../types/RPSChoice';
+import type { ExtendedChoices } from '../../../types/gameChoices';
 import type { FC } from 'react';
 import { Ring } from '../RPSConcentricRings';
 
 interface RPSButtonProps {
-  type: RPSChoice;
-  onClick(type: RPSChoice): void;
+  type: ExtendedChoices;
+  onClick(type: ExtendedChoices): void;
   selected?: boolean;
   winner?: boolean;
 }
 
-const styleMap: Record<RPSChoice, string> = {
+const styleMap: Record<ExtendedChoices, string> = {
   rock: 'border-red-400 shadow-[0_8px_0_0_rgba(199,36,48,1)]',
   paper: 'border-blue-400 shadow-[0_8px_0_0_rgba(46,86,255,1)]',
   scissors: 'border-yellow-400 shadow-[0_8px_0_0_rgba(255,159,10,1)]',
+  lizard: 'border-cyan-400 shadow-[0_8px_0_0_rgba(14,160,186,1)]',
+  spock: 'border-purple-500 shadow-[0_8px_0_0_rgba(106,38,163,1)]',
 };
 
-const iconMap: Record<RPSChoice, string> = {
+const iconMap: Record<ExtendedChoices, string> = {
   rock: 'icon-rock.svg',
   paper: 'icon-paper.svg',
   scissors: 'icon-scissors.svg',
+  lizard: 'icon-lizard.svg',
+  spock: 'icon-spock.svg',
 };
 
 export const RPSButton: FC<RPSButtonProps> = ({ type, onClick, selected, winner }) => {
