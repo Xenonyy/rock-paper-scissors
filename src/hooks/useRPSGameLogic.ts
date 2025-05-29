@@ -5,15 +5,15 @@ import { calculateWinner } from '../utils/calculateWinner';
 import { useScore } from '../contexts/ScoreContext';
 import { useWinner } from '../contexts/WinnerContext';
 import { useGameMode } from '../contexts/GameModeContext';
-import type { GameStage } from '../types/RPSState';
 import { useLocalStorage } from './useLocalStorage';
 import { ModePickOptions, WinningRules } from '../types/gameModes';
 import type { ExtendedChoices } from '../types/gameChoices';
+import { useGameStage } from '../contexts/GameStateContext';
 
 export const useRPSGameLogic = () => {
   const [playerChoice, setPlayerChoice] = useState<ExtendedChoices | null>(null);
   const [computerChoice, setComputerChoice] = useState<ExtendedChoices | null>(null);
-  const [stage, setStage] = useState<GameStage>('idle');
+  const { stage, setStage } = useGameStage();
   const [, setLocalStorageScore] = useLocalStorage<number>('score', 0);
 
   const { setScore } = useScore();
