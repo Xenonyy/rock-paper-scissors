@@ -42,13 +42,12 @@ export const RPSButton: FC<RPSButtonProps> = ({ type, onClick, selected, winner 
         aria-pressed={selected}
         onClick={() => onClick(type)}
         className={clsx(
-          'relative z-10 w-38 h-38 rounded-full border-16 flex items-center justify-center transition-transform duration-150 ease-in-out scale-90',
+          'relative z-10 rounded-full flex items-center justify-center aspect-square transition-transform duration-150 ease-in-out',
           styleMap[type],
           'focus:outline-none focus-visible:ring-1 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-darkBlue',
-          {
-            'w-60 h-60 border-28 hover:scale-100': selected,
-            'cursor-pointer hover:scale-105': !selected,
-          }
+          selected
+            ? 'w-[clamp(8rem,20vw,15rem)] border-[clamp(0.9rem,3vw,1.5rem)] scale-100'
+            : 'w-[clamp(7rem,18vw,9.5rem)] border-[clamp(0.75rem,1.15vw,1rem)] scale-90 cursor-pointer hover:scale-105'
         )}
         type="button"
       >
@@ -56,10 +55,11 @@ export const RPSButton: FC<RPSButtonProps> = ({ type, onClick, selected, winner 
           <img
             src={iconMap[type]}
             alt={type}
-            className={clsx({
-              'w-12 h-12': !selected,
-              'w-24 h-24': selected,
-            })}
+            className={clsx(
+              selected
+                ? 'w-[clamp(2.5rem,6vw,5rem)] h-[clamp(2.5rem,6vw,5rem)]'
+                : 'w-[clamp(2rem,5vw,3rem)] h-[clamp(2rem,5vw,3rem)]'
+            )}
           />
         </div>
       </button>

@@ -38,7 +38,7 @@ export const Modal: FC<ModalProps> = ({ active, children, onClose }) => {
   return (
     <Container
       className={clsx(
-        'fixed top-1/5 inset-0 z-20 flex items-center justify-center transition-opacity duration-300',
+        'fixed top-1/5 p-4 inset-0 z-20 flex items-center justify-center transition-opacity duration-300',
         active ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
       )}
       aria-modal="true"

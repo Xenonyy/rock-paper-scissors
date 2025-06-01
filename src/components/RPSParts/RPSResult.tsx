@@ -16,7 +16,7 @@ export const RPSResult = ({ playerChoice, computerChoice, onReset, rules }: RPSR
 
   return (
     <motion.div
-      className="absolute left-1/2 transform -translate-x-1/2 text-white text-lg flex flex-col items-center gap-2"
+      className="absolute left-1/2 transform -translate-x-1/2 text-white text-lg flex flex-col items-center gap-2 w-full md:w-auto top-[80%] md:top-1/2"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.1 }}

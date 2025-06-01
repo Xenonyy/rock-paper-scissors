@@ -20,8 +20,8 @@ const RulesModalComponent: FC<RulesModalProps> = ({ className, src, active = fal
   return (
     <Modal active={active} onClose={close}>
       <Box className={clsx('mb-4 rounded-lg shadow-lg bg-white relative items-start p-10 flex-col', className)}>
-        <Box className="flex-row justify-between w-full mb-10">
-          <Text text="rules" className="uppercase font-semibold text-3xl text-gray-700" />
+        <Box className="flex-row justify-between w-full mb-6 md:mb-10">
+          <Text text="rules" className="uppercase font-semibold text-xl md:text-3xl text-gray-700" />
           <CloseButton onClick={close} />
         </Box>
         <img src={src} alt="" aria-hidden />

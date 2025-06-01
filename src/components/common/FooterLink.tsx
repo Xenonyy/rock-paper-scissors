@@ -22,9 +22,9 @@ export const FooterLink = ({ href, imgSrc, alt, label }: FooterLinkProps) => {
       <img
         src={imgSrc}
         alt={alt}
-        className="w-12 h-12 mb-1 drop-shadow-md hover:drop-shadow-xl hover:text-white transition-all duration-200"
+        className="w-11 h-11 md:w-12 md:h-12 mb-1 drop-shadow-md hover:drop-shadow-xl hover:text-white transition-all duration-200"
       />
-      <Text text={label} />
+      <Text text={label} className="text-sm md:text-base" />
     </a>
   );
 };

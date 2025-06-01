@@ -25,17 +25,17 @@ const RPSButtonAnimationComponent = ({
   const { mode } = useGameMode();
 
   const trianglePositions: Record<StandardChoices, string> = {
-    paper: 'top-0 left-0',
-    scissors: 'top-0 right-0',
-    rock: 'bottom-0 left-1/2 -translate-x-1/2',
+    paper: 'top-0 left-0 max-md:left-6',
+    scissors: 'top-0 right-0 max-md:right-6',
+    rock: 'bottom-0 max-md:bottom-6 left-1/2 -translate-x-1/2',
   };
 
   const pentagonPositions: Record<ExtendedChoices, string> = {
-    paper: '-top-15 left-1/2 -translate-x-1/2',
-    scissors: 'top-1/5 -right-15',
-    rock: '-bottom-15 left-2/3 -translate-x-2/6',
-    lizard: '-bottom-15 left-1/3 -translate-x-4/5',
-    spock: 'top-20 top-1/4 -left-15',
+    paper: '-top-15 max-md:-top-3 left-1/2 -translate-x-1/2',
+    scissors: 'top-1/5 max-md:top-1/4 -right-15 max-md:right-6',
+    rock: '-bottom-15 max-md:bottom-5 max-md:left-[62%] left-2/3 -translate-x-2/6',
+    lizard: '-bottom-15 max-md:bottom-5 max-md:left-[42%] left-1/3 -translate-x-4/5',
+    spock: 'top-1/5 max-md:top-1/4 -left-15 max-md:left-6',
   };
 
   const pickOptions =
@@ -45,8 +45,8 @@ const RPSButtonAnimationComponent = ({
 
   const backgroundImage = mode === 'classic' ? 'bg-triangle.svg' : 'bg-pentagon.svg';
 
-  const finalPlayerPosition = 'top-1/2 right-5/6 -translate-y-1/2';
-  const finalComputerPosition = 'top-1/2 left-5/6 -translate-y-1/2';
+  const finalPlayerPosition = 'top-1/2 left-10 sm:left-0 -translate-y-1/2 md:-translate-x-[80%]';
+  const finalComputerPosition = 'top-1/2 right-10 sm:right-0 md:left-5/6 -translate-y-1/2';
 
   return (
     <>
@@ -57,8 +57,8 @@ const RPSButtonAnimationComponent = ({
         className={clsx('inset-0 m-auto z-0', {
           ['absolute']: stage === 'idle',
           ['hidden']: stage !== 'idle',
-          ['w-100 h-100']: mode === 'advanced',
-          ['w-70 h-70']: mode === 'classic',
+          ['w-60 h-60 md:w-80 md:h-80 xl:w-100 xl:h-100']: mode === 'advanced',
+          ['w-60 h-60 md:w-70 md:h-70']: mode === 'classic',
         })}
       />
 
@@ -78,7 +78,7 @@ const RPSButtonAnimationComponent = ({
             shouldRender && (
               <motion.div
                 key={`${mode}-${type}`}
-                className={clsx('absolute origin-center', finalClass)}
+                className={clsx('absolute origin-center w-fit', finalClass)}
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.2, ease: 'easeOut' }}
@@ -100,7 +100,7 @@ const RPSButtonAnimationComponent = ({
       {computerChoice && (
         <motion.div
           key={`computer-${computerChoice}`}
-          className={clsx('absolute transition-all', finalComputerPosition)}
+          className={clsx('absolute transition-all w-fit', finalComputerPosition)}
           initial={{ opacity: 0, scale: 0.25 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.15, ease: 'linear' }}
