@@ -16,7 +16,7 @@ const RPSAnnouncementComponent = ({ stage, playerChoice, computerChoice }: RPSAn
   const isVisible = stage === 'result';
 
   return (
-    <Box className="mt-4 md:mt-10 text-sm md:text-2xl max-md:w-5/6 text-center justify-center md:space-x-60">
+    <Box className="mt-4 md:mt-10 text-sm md:text-2xl max-md:w-2/3 text-center justify-center md:space-x-60">
       <motion.span initial={{ opacity: 0 }} animate={{ opacity: isVisible ? 1 : 0 }} transition={{ duration: 1 }}>
         <Text text={`you picked ${playerChoice}`} className={clsx({ 'opacity-0': !isVisible })} />
       </motion.span>
