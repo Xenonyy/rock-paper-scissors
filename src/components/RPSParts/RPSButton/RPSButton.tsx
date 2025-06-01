@@ -28,7 +28,7 @@ const iconMap: Record<ExtendedChoices, string> = {
 
 export const RPSButton: FC<RPSButtonProps> = ({ type, onClick, selected, winner }) => {
   return (
-    <div className="relative flex items-center justify-center">
+    <div className="relative flex items-center justify-center ">
       {winner && (
         <>
           {process.env.NODE_ENV !== 'production' && console.log(winner, 'RPSbuttoncontainer')}

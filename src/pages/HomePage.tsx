@@ -80,7 +80,7 @@ export const HomePage = () => {
           </Box>
         </Box>
         <RPSButtonsWrapper />
-        <Box className="justify-end w-full">
+        <Box className="justify-end w-full max-sm:px-10 ">
           <button
             className="cursor-pointer uppercase font-semibold tracking-widest border-solid border-3 hover:border-gray-300 transition-all duration-300 border-gray-500 rounded-2xl py-2 md:px-8 px-4 text-sm md:text-base mt-15 md:mt-0"
             onClick={handleModalOpen}
