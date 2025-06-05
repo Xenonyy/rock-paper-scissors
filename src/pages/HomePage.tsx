@@ -29,9 +29,12 @@ export const HomePage = () => {
   return (
     <DefaultLayout>
       <Container
-        className={clsx('[background-image:radial-gradient(circle_at_top,_#354063,_#2c3450,_#15183b)] p-4', {
-          'opacity-10 pointer-events-none': isModalActive,
-        })}
+        className={clsx(
+          '[background-image:radial-gradient(circle_at_top,_#354063,_#2c3450,_#15183b)] p-4 overflow-hidden',
+          {
+            'opacity-10 pointer-events-none': isModalActive,
+          }
+        )}
       >
         <Box
           className={clsx(
