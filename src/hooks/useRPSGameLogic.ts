@@ -42,6 +42,9 @@ export const useRPSGameLogic = () => {
       if (result === 'you win') {
         setScore((prev) => prev + 1);
         setLocalStorageScore((prev) => prev + 1);
+      } else if (result === 'you lose') {
+        setScore((prev) => prev - 1);
+        setLocalStorageScore((prev) => prev - 1);
       }
     },
     [stage, options]
