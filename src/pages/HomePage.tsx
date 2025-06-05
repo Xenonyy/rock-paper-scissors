@@ -30,7 +30,7 @@ export const HomePage = () => {
     <DefaultLayout>
       <Container
         className={clsx(
-          '[background-image:radial-gradient(circle_at_top,_#354063,_#2c3450,_#15183b)] p-4 overflow-hidden',
+          '[background-image:radial-gradient(circle_at_top,_var(--bg-start),_var(--bg-end))] p-4 overflow-hidden',
           {
             'opacity-10 pointer-events-none': isModalActive,
           }
@@ -38,7 +38,7 @@ export const HomePage = () => {
       >
         <Box
           className={clsx(
-            'uppercase font-semibold border-solid border-3 border-gray-500 rounded-2xl justify-between px-6 py-4',
+            'uppercase font-semibold border-solid border-3 border-header-outline rounded-lg md:rounded-xl justify-between px-6 py-4',
             'w-3/4 sm:w-fit lg:w-[60%] xl:w-[40%] md:items-center flex-col gap-2 md:gap-4 text-xl md:text-3xl md:flex-row'
           )}
         >
@@ -70,22 +70,24 @@ export const HomePage = () => {
               )}
             </AnimatePresence>
           </Box>
-          <button
-            className="not-disabled:cursor-pointer uppercase font-semibold md:text-2xl border-solid border-3 disabled:border-red-400 disabled:opacity-40 not-disabled:hover:border-gray-300 transition-all duration-300 border-gray-500 rounded-2xl md:py-2 md:px-6 text-lg px-4 py-1"
-            onClick={handleGameModeSwitch}
-            disabled={stage !== 'idle'}
-          >
-            <Text text="switch" />
-          </button>
-          <Box className="md:w-32 md:h-24 bg-white rounded-2xl flex-col items-center justify-center text-gray-500 text-base w-24 h-20">
-            <Text text="score" className="font-thin tracking-widest md:text-base text-xs" />
-            <Text text={score} className="font-bold md:text-5xl text-3xl" />
+          <Box className="gap-4">
+            <button
+              className="not-disabled:cursor-pointer uppercase font-semibold md:text-2xl border-solid border-3 disabled:border-red-400 disabled:opacity-40 not-disabled:hover:border-gray-300 transition-all duration-300 border-header-outline rounded-lg md:rounded-xl md:py-2 md:px-6 px-4 py-1 text-sm w-24 md:w-40 h-20 md:h-24"
+              onClick={handleGameModeSwitch}
+              disabled={stage !== 'idle'}
+            >
+              <Text text={`switch to ${mode === 'advanced' ? 'classic' : 'advanced'}`} />
+            </button>
+            <Box className="w-24 h-20 md:w-32 md:h-24 bg-white rounded-lg md:rounded-xl flex-col items-center justify-center text-base">
+              <Text text="score" className="font-semibold tracking-widest md:text-base text-xs text-score-text" />
+              <Text text={score} className="font-bold md:text-5xl text-3xl text-dark-text shadow-dark-text" />
+            </Box>
           </Box>
         </Box>
         <RPSButtonsWrapper />
-        <Box className="justify-end w-full max-sm:pr-2">
+        <Box className="justify-center md:justify-end w-full">
           <button
-            className="cursor-pointer uppercase font-semibold tracking-widest border-solid border-3 hover:border-gray-300 transition-all duration-300 border-gray-500 rounded-2xl py-2 md:px-8 px-4 text-sm md:text-base mt-15 md:mt-0"
+            className="cursor-pointer uppercase font-semibold tracking-widest border-solid border-3 hover:border-gray-300 transition-all duration-300 border-header-outline rounded-lg md:rounded-xl py-2 md:px-8 px-4 text-sm md:text-base mt-15 md:mt-0"
             onClick={handleModalOpen}
           >
             <Text text="Rules" />
