@@ -21,7 +21,7 @@ const RulesModalComponent: FC<RulesModalProps> = ({ className, src, active = fal
     <Modal active={active} onClose={close}>
       <Box className={clsx('mb-4 rounded-lg shadow-lg bg-white relative items-start p-10 flex-col', className)}>
         <Box className="flex-row justify-between w-full mb-6 md:mb-10">
-          <Text text="rules" className="uppercase font-semibold text-xl md:text-3xl text-gray-700" />
+          <Text text="rules" className="uppercase font-semibold text-xl md:text-3xl text-dark-text" />
           <CloseButton onClick={close} />
         </Box>
         <img src={src} alt="" aria-hidden />

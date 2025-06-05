@@ -11,11 +11,11 @@ interface RPSButtonProps {
 }
 
 const styleMap: Record<ExtendedChoices, string> = {
-  rock: 'border-red-400 shadow-[0_8px_0_0_rgba(199,36,48,1)]',
-  paper: 'border-blue-400 shadow-[0_8px_0_0_rgba(46,86,255,1)]',
-  scissors: 'border-yellow-400 shadow-[0_8px_0_0_rgba(255,159,10,1)]',
-  lizard: 'border-cyan-400 shadow-[0_8px_0_0_rgba(14,160,186,1)]',
-  spock: 'border-purple-500 shadow-[0_8px_0_0_rgba(106,38,163,1)]',
+  rock: 'border-(--rock-border) shadow-[0_8px_0_0_var(--rock-shadow))]',
+  paper: 'border-(--paper-border) shadow-[0_8px_0_0_var(--paper-shadow))]',
+  scissors: 'border-(--scissors-border) shadow-[0_8px_0_0_var(--scissors-shadow))]',
+  lizard: 'border-(--lizard-border) shadow-[0_8px_0_0_var(--lizard-shadow))]',
+  spock: 'border-(--spock-border) shadow-[0_8px_0_0_var(--spock-shadow))]',
 };
 
 const iconMap: Record<ExtendedChoices, string> = {

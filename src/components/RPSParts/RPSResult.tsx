@@ -30,7 +30,7 @@ export const RPSResult = ({ playerChoice, computerChoice, onReset, rules }: RPSR
           text="play again"
           className={clsx('uppercase px-4 tracking-widest font-semibold', {
             ['text-red-500']: result === 'you lose',
-            ['text-black']: result !== 'you lose',
+            ['text-dark-text']: result !== 'you lose',
           })}
         />
       </button>
