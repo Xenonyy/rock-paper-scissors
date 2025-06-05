@@ -54,6 +54,8 @@ export const RPSButton: FC<RPSButtonProps> = ({ type, onClick, selected, winner 
         <div className="w-full h-full bg-white rounded-full flex items-center justify-center shadow-[inset_0_6px_4px_rgba(0,0,0,0.2)]">
           <img
             src={iconMap[type]}
+            fetchPriority="high"
+            decoding="async"
             alt={type}
             className={clsx(
               selected
