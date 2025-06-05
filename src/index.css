@@ -1,5 +1,25 @@
 @import 'tailwindcss';
 
+@theme {
+  --scissors-border: hsl(40, 84%, 53%);
+  --scissors-shadow: hsl(39, 89%, 40%);
+  --paper-border: hsl(230, 89%, 65%);
+  --paper-shadow: hsl(230, 89%, 58%);
+  --rock-border: hsl(349, 70%, 56%);
+  --rock-shadow: hsl(349, 71%, 40%);
+  --lizard-border: hsl(261, 72%, 63%);
+  --lizard-shadow: hsl(261, 73%, 58%);
+  --spock-border: hsl(189, 58%, 57%);
+  --spock-shadow: hsl(189, 59%, 40%);
+
+  --color-dark-text: hsl(229, 25%, 31%);
+  --color-score-text: hsl(229, 64%, 46%);
+  --color-header-outline: hsl(217, 16%, 45%);
+
+  --bg-start: hsl(214, 47%, 23%);
+  --bg-end: hsl(237, 49%, 15%);
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
