@@ -7,7 +7,12 @@ This is a solution to the [Rock, Paper, Scissors challenge on Frontend Mentor](h
 - [Overview](#overview)
   - [The challenge](#the-challenge)
   - [Screenshot](#screenshot)
+  - [Features](#features)
   - [Links](#links)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running Locally](#running-locally)  
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
@@ -29,10 +34,46 @@ Users should be able to:
 
 ![](https://i.gyazo.com/a5a046e219e85e61b1ab78879edbd294.png)
 
+### Features
+
+- 🎮 **Two Game Modes**
+  - Classic: Rock, Paper, Scissors
+  - Advanced: Rock, Paper, Scissors, Lizard, Spock
+- 🧠 Accurate and extensible game logic
+- 💾 **Score persistence** with localStorage
+- ⚛️ Clean state management using **React Context**
+- 💨 **Framer Motion** animations for fluid UI transitions
+- 📱 Fully **responsive** layout across all screen sizes
+- ♿ Thoughtful **accessibility**: semantic HTML and keyboard-friendly controls, playable mouse-free
+
 ### Links
 
 - [Solution URL](https://github.com/Xenonyy/rock-paper-scissors/)
 - [Live Site URL](https://rps-gameapp.netlify.app/)
+
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18+ recommended)
+- npm or yarn
+
+### Installation
+
+```bash
+git clone https://github.com/Xenonyy/rock-paper-scissors.git
+cd rock-paper-scissors
+npm install
+```
+
+### Running Locally
+
+```bash
+npm run dev
+```
+
+Open `http://localhost:5173` in your browser.
 
 ## My process
 
@@ -49,16 +90,24 @@ Users should be able to:
 
 This project helped me solidify modern React concepts and improve my confidence in building responsive, animated UIs with TailwindCSS and Motion, while also challenging me to write clean, scalable and maintainable code with the intorduction of the bonus features.
 
-- React 19 App Architecture
-  I structured the game using composable and reusable functional components, with Contexts to manage global state like the game state, game mode, score and the winner.
-- Responsive Design with Tailwind
-  Rather than hardcoding breakpoints, I used Tailwind’s responsive utility classes to build layouts that scale naturally. Also learnt about Tailwind ^4.0 setup and new features.
-- Bonus and Maintainability
-  Adding the Lizard and Spock for the bonus challenged me to refactor my logic to support multiple rulesets without duplicating code. I introduced enums, mappings and contexts to keep it scalable.
-- Ture randomness
-  Using the cryptographically powered randomness to get true unpredictibilty instead of opting for a simple Math.random(), while undeniably overkill here it was fun to learn about it!
+- 🧠 React 19 App Architecture
 
-I'm proud of this optimized gamelogic-handling custom react hook:
+I structured the game using composable and reusable functional components, with Contexts to manage global state like the game state, game mode, score and the winner.
+
+- 📱 Responsive Design with Tailwind
+
+Rather than hardcoding breakpoints, I used Tailwind’s responsive utility classes to build layouts that scale naturally. Also learnt about Tailwind ^4.0 setup and new features.
+
+- 🛠️ Bonus and Maintainability
+
+Adding the Lizard and Spock for the bonus challenged me to refactor my logic to support multiple rulesets without duplicating code. I introduced enums, mappings and contexts to keep it scalable.
+
+- 🎲 True Randomness
+
+Using the cryptographically powered randomness to get true unpredictability instead of opting for a simple `Math.random()`. While undeniably overkill here, it was fun to learn about it!
+
+
+- I'm proud of this optimized gamelogic-handling custom react hook:
 
 ```js
 export const useRPSGameLogic = () => {
